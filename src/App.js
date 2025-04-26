@@ -4,7 +4,9 @@ import "./style.css";
 export default function App() {
   const [name, setName] = useState("");
   const [job, setJob] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("Seeking employment"); // default
+  const [company, setCompany] = useState("");
+  const [location, setLocation] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +21,7 @@ export default function App() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, job, status }),
+        body: JSON.stringify({ name, job, status, company, location }),
       });
 
       const data = await response.json();
@@ -34,7 +36,7 @@ export default function App() {
   return (
     <div className="App">
       <h1>🧙‍♂️ PostMBASeer</h1>
-      <p>Enter your details to receive your MBA prophecy:</p>
+      <p>Enter your details for your personalized MBA prophecy:</p>
 
       <form onSubmit={handleSubmit}>
         <input
@@ -46,17 +48,33 @@ export default function App() {
         />
         <input
           type="text"
-          placeholder="Dream Job (e.g., VC)"
+          placeholder="Job / Target Job"
           value={job}
           onChange={(e) => setJob(e.target.value)}
           required
         />
-        <input
-          type="text"
-          placeholder="Current Status"
+        <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
           required
+        >
+          <option>Seeking employment</option>
+          <option>Got an offer, considering it</option>
+          <option>Accepted an offer</option>
+          <option>Starting my own venture</option>
+          <option>Taking time off to figure things out</option>
+        </select>
+        <input
+          type="text"
+          placeholder="Company (Optional)"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Location (Optional)"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
         />
         <button type="submit">Ask the Oracle</button>
       </form>
@@ -66,7 +84,7 @@ export default function App() {
       {result && (
         <div className="result">
           <h3>🗣 Oracle says:</h3>
-          <p>{result}</p>
+          <pre>{result}</pre>
         </div>
       )}
     </div>
