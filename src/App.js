@@ -4,7 +4,8 @@ import "./style.css";
 export default function App() {
   const [name, setName] = useState("");
   const [job, setJob] = useState("");
-  const [status, setStatus] = useState("Seeking employment"); // default
+  const [industry, setIndustry] = useState(""); // 🆕 Added
+  const [status, setStatus] = useState("Seeking employment");
   const [company, setCompany] = useState("");
   const [location, setLocation] = useState("");
   const [result, setResult] = useState("");
@@ -21,7 +22,7 @@ export default function App() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, job, status, company, location }),
+        body: JSON.stringify({ name, job, industry, status, company, location }), // 🆕 Include industry
       });
 
       const data = await response.json();
@@ -48,9 +49,16 @@ export default function App() {
         />
         <input
           type="text"
-          placeholder="Job / Target Job"
+          placeholder="Target Job Title"
           value={job}
           onChange={(e) => setJob(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Industry (e.g., Finance, Tech, Consulting)"
+          value={industry}
+          onChange={(e) => setIndustry(e.target.value)}
           required
         />
         <select
