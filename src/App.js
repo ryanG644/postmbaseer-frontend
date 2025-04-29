@@ -150,11 +150,18 @@ export default function App() {
       {loading && <p>🔮 Summoning your fate...</p>}
 
       {result && (
-        <div className="result">
-          <h3>🗣 Oracle says:</h3>
-          <pre>{result}</pre>
-        </div>
-      )}
+  <div className="result">
+    <h3>🗣 Oracle says:</h3>
+    <pre>{result}</pre>
+    <button className="share-button" onClick={() => {
+      navigator.clipboard.writeText(result);
+      alert("📋 Copied! Now share your prophecy!");
+    }}>
+      📤 Share Your Prophecy
+    </button>
+  </div>
+)}
+
     </div>
   );
 }

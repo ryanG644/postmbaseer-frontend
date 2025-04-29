@@ -31,33 +31,4 @@ input, select {
   font-size: 1em;
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 100%;
-}
-
-button {
-  background-color: #6a0dad;
-  color: white;
-  padding: 14px;
-  font-size: 1em;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-}
-
-button:hover {
-  background-color: #580d9e;
-}
-
-.result {
-  margin-top: 30px;
-  background: #f1f1ff;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: left;
-}
-
-pre {
-  white-space: pre-wrap;
-  text-align: left;
-}
+  width: 100
